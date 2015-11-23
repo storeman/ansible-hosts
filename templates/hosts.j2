@@ -1,0 +1,23 @@
+# {{ ansible_managed }}
+127.0.0.1 {% if hosts_ansible_name_as_fqdn|bool %}{{ ansible_nodename }} {% endif %}localhost.localdomain localhost {{ ansible_hostname }} {{ hosts_fqdn }} {{ ansible_fqdn }}
+
+{% for host in play_hosts %}
+{% if hostvars[host][hostvars[host]['hosts_ansible_eth']].ipv4.address %}
+{{ hostvars[host][hostvars[host]['hosts_ansible_eth']].ipv4.address }}
+{%- if hostvars[host]['hosts_ansible_name_as_fqdn'] is defined and hostvars[host]['hosts_ansible_name_as_fqdn']|bool %} {{ hostvars[host]['ansible_nodename'] }} {% else%} {% endif -%}
+{{ hostvars[host]['ansible_hostname'] }}
+{%- if hostvars[host]['hosts_fqdn'] is defined %}{{ hostvars[host]['hosts_fqdn'] }} {% else %} {% endif -%}
+{{ hostvars[host]['ansible_fqdn'] }}
+{% endif %}
+{% endfor %}
+
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+# Other hosts below
+{{ hosts_custom_hosts }}

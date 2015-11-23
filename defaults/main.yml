@@ -1,0 +1,5 @@
+---
+hosts_custom_hosts: ""
+hosts_ansible_name_as_fqdn: yes
+hosts_fqdn: ""
+hosts_ansible_eth: ansible_eth0
