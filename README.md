@@ -10,7 +10,7 @@ Create a dynamic hosts file from the repository. Useful for a
 cluster which need to talk to eachother over the local network
 using a hostname.
 
-Passing in custom entries is allowed using the *hosts_custom_hosts* 
+Passing in custom entries is allowed using the ```hosts_custom_hosts``` 
 variable.
 
 Make sure per hosts the ```hosts_ansible_eth``` variable exists. This 
